@@ -22,4 +22,4 @@ async def on_message(message):
     embed.set_image(url=url)
     await client.send_message(channel, embed=embed)
 
-client.run(os.getenv('token'),bot=False)
+client.run(os.getenv('NTQ5MTQ0ODg0MjIxNTc1MTY4.D2Fk9A.8e31CbVYQ1TKOrgeu3Z3-3GsI7o'),bot=False)
