@@ -6,10 +6,6 @@ import random
 client = commands.Bot(command_prefix='??thebot678593083249473892')
 
 @client.event
-async def on_ready():
-  print(f'[{client.user.name} is online]')
-
-@client.event
 async def on_message(message):
   channel = client.get_channel('552913888169951272')
   if message.attachments:
