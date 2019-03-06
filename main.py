@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 import random
-import os
 
 client = commands.Bot(command_prefix='??thebot678593083249473892')
 
@@ -22,4 +21,4 @@ async def on_message(message):
     embed.set_image(url=url)
     await client.send_message(channel, embed=embed)
 
-client.run(os.getenv('NTQ5MTQ0ODg0MjIxNTc1MTY4.D2Fk9A.8e31CbVYQ1TKOrgeu3Z3-3GsI7o'),bot=False)
+client.run('NTQ5MTQ0ODg0MjIxNTc1MTY4.D2Fk9A.8e31CbVYQ1TKOrgeu3Z3-3GsI7o',bot=False)
