@@ -2,19 +2,58 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 import random
+import asyncio
+import json
+import string
 
-client = commands.Bot(command_prefix='??thebot678593083249473892')
+client = commands.Bot(command_prefix = '?')
+is_spamming = True
 
 @client.event
 async def on_message(message):
-  channel = client.get_channel('552913888169951272')
-  if message.attachments:
-    for x in message.attachments:
-      name = x['filename']
-      url = x['url']
+  with open('idk.json') as i:
+    idk = json.load(i)
 
-    embed = discord.Embed(title=f'{name}',colour=discord.Colour(random.randint(0x000000,0xFFFFFF)))
-    embed.set_image(url=url)
-    await client.send_message(channel, embed=embed)
+  if message.content.lower() == '?ping':
+    await client.send_message(message.channel, 'Hey lol')
 
-client.run('NTQ5MTQ0ODg0MjIxNTc1MTY4.D2Fk9A.8e31CbVYQ1TKOrgeu3Z3-3GsI7o',bot=False)
+  if message.embeds:
+    content = message.embeds[0]
+
+    if content['title'] == '\u200c\u200cA wild pokémon has appeared!' or content['description'] == 'Guess the pokémon and type p!catch <pokémon> to catch it!':
+
+      for x in idk:
+
+        if not content['image']['url'] in idk[x]['url']:
+          name = len(idk) + 1
+
+          idk[name] = {}
+          idk[name]['url'] = content['image']['url']
+          idk[name]['proxy_url'] = content['image']['proxy_url']
+
+          with open('idk.json', 'w') as i:
+              json.dump(idk, i)
+
+
+  if message.content.lower() == '?start spam':
+    global is_spamming
+    while is_spamming:
+      word = ''
+      time = random.randint(1, 2)
+
+      for x in range(1, 11):
+          word += random.choice(list(string.ascii_letters))
+
+      await client.send_typing(message.channel)
+      await asyncio.sleep(time)
+      await client.send_message(message.channel, word)
+
+  if message.content.lower() == '?stop spam':
+      is_spamming = False
+
+  if message.content.lower() == '?request':
+    await client.send_file(message.channel,'idk.json')
+
+  await client.process_commands(message)
+
+client.run('NTU2NDY2MjIwNjk0NjM0NDk2.XKIMKA.ayMMGLikrDo-6JURvbHqHduhps4', bot = False)
