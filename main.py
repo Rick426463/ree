@@ -37,6 +37,7 @@ async def on_message(message):
 
   if message.content.lower() == '?start spam':
     global is_spamming
+    is_spamming = True
     while is_spamming:
       word = ''
       time = random.randint(1, 2)
