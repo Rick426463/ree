@@ -24,7 +24,7 @@ async def on_message(message):
 
       for x in idk:
 
-        if not content['image']['url'] in idk[x]['url']:
+        if not content['image']['url'] in idk[x]['url'] and not content['image']['proxy_url'] in idk[x]['proxy_url']:
           name = len(idk) + 1
 
           idk[name] = {}
